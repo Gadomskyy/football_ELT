@@ -1,0 +1,80 @@
+[0m21:36:52.403156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D60B8B410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D65CFA120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D63BC28D0>]}
+
+
+============================== 21:36:52.406157 | b594b5c3-4b2c-4297-bd86-3d643f72f3b7 ==============================
+[0m21:36:52.406157 [info ] [MainThread]: Running with dbt=1.12.0
+[0m21:36:52.406157 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\j_gad\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt init football_analytics', 'log_path': 'logs'}
+[0m21:36:52.427283 [debug] [MainThread]: Starter project path: C:\DE_projekty\test_project\.venv\Lib\site-packages\dbt\include\starter_project
+[0m21:36:52.434283 [info ] [MainThread]: Setting up your profile.
+[0m21:37:07.680821 [info ] [MainThread]: Profile football_analytics written to C:\Users\j_gad\.dbt\profiles.yml using target's profile_template.yml and your supplied values.
+[0m21:37:07.682821 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m21:37:07.683822 [info ] [MainThread]: dbt version: 1.12.0
+[0m21:37:07.683822 [info ] [MainThread]: python version: 3.12.4
+[0m21:37:07.684823 [info ] [MainThread]: python path: C:\DE_projekty\test_project\.venv\Scripts\python.exe
+[0m21:37:07.684823 [info ] [MainThread]: os info: Windows-11-10.0.26200-SP0
+[0m21:37:07.724339 [info ] [MainThread]: Using profiles dir at C:\Users\j_gad\.dbt
+[0m21:37:07.724339 [info ] [MainThread]: Using profiles.yml file at C:\Users\j_gad\.dbt\profiles.yml
+[0m21:37:07.725339 [info ] [MainThread]: Using dbt_project.yml file at C:\DE_projekty\test_project\football_analytics\dbt_project.yml
+[0m21:37:07.725339 [info ] [MainThread]: adapter type: bigquery
+[0m21:37:07.725339 [info ] [MainThread]: adapter version: 1.12.0
+[0m21:37:07.788843 [info ] [MainThread]: Configuration:
+[0m21:37:07.788843 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:37:07.789902 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m21:37:07.789902 [info ] [MainThread]: Required dependencies:
+[0m21:37:07.789902 [debug] [MainThread]: Executing "git --help"
+[0m21:37:07.817906 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:37:07.817906 [debug] [MainThread]: STDERR: "b''"
+[0m21:37:07.818905 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:37:07.818905 [info ] [MainThread]: Connection:
+[0m21:37:07.818905 [info ] [MainThread]:   method: oauth
+[0m21:37:07.819905 [info ] [MainThread]:   database: jga-sandbox
+[0m21:37:07.819905 [info ] [MainThread]:   execution_project: jga-sandbox
+[0m21:37:07.819905 [info ] [MainThread]:   schema: silver
+[0m21:37:07.819905 [info ] [MainThread]:   location: EU
+[0m21:37:07.819905 [info ] [MainThread]:   priority: interactive
+[0m21:37:07.820905 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m21:37:07.820905 [info ] [MainThread]:   reservation: None
+[0m21:37:07.820905 [info ] [MainThread]:   impersonate_service_account: None
+[0m21:37:07.820905 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m21:37:07.820905 [info ] [MainThread]:   job_retries: 1
+[0m21:37:07.821906 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m21:37:07.821906 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m21:37:07.821906 [info ] [MainThread]:   job_link_info_level_log: False
+[0m21:37:07.821906 [info ] [MainThread]:   timeout_seconds: 300
+[0m21:37:07.821906 [info ] [MainThread]:   client_id: None
+[0m21:37:07.821906 [info ] [MainThread]:   token_uri: None
+[0m21:37:07.822906 [info ] [MainThread]:   compute_region: None
+[0m21:37:07.822906 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m21:37:07.822906 [info ] [MainThread]:   gcs_bucket: None
+[0m21:37:07.822906 [info ] [MainThread]:   dataproc_batch: None
+[0m21:37:07.822906 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m21:37:07.992698 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m21:37:07.992698 [debug] [MainThread]: On debug: select 1 as id
+[0m21:37:07.993698 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:37:12.434561 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jga-sandbox&j=bq:EU:98d2ca5e-4496-4547-83c7-198feb0a0d7f&page=queryresults
+[0m21:37:12.620617 [debug] [MainThread]: SQL status: OK in 0.185 seconds
+[0m21:37:14.545495 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:37:14.546494 [info ] [MainThread]: [32mAll checks passed![0m
+[0m21:37:14.547489 [info ] [MainThread]: Your new dbt project "football_analytics" was created!
+Initialized new project in C:\DE_projekty\test_project\football_analytics\football_analytics
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m21:37:14.547489 [debug] [MainThread]: Command `dbt init` succeeded at 21:37:14.547489 after 22.22 seconds
+[0m21:37:14.548498 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m21:37:14.548498 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D64169820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D61E3C8C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D63F2D7C0>]}
+[0m21:37:14.549500 [debug] [MainThread]: Flushing usage events
+[0m21:37:15.150332 [debug] [MainThread]: An error was encountered while trying to flush usage events

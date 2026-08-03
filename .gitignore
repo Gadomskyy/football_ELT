@@ -1,0 +1,32 @@
+# dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+
+# local
+.venv/
+__pycache__/
+*.pyc
+
+# secrets
+profiles.yml
+credentials/
+service-account*.json
+airflow/.env
+application_default_credentials.json
+*.key.json
+
+data/landing/
+data/processed/
+
+# airflow
+airflow/logs/
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
