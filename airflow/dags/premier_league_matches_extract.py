@@ -3,6 +3,7 @@ import os
 from datetime import datetime, timezone
 from airflow.sdk import dag, task
 from src.common.api_to_bigquery import extract_flatten_and_load
+from src.common.commons import GCP_PROJECT_ID, GCP_LOCATION
 
 #VARIABLES
 SEASONS = [2024, 2025, 2026]
@@ -10,17 +11,6 @@ SEASONS = [2024, 2025, 2026]
 API_URL = (
     "https://api.football-data.org/v4/competitions/PL/matches"
 )
-
-GCP_PROJECT_ID = os.getenv(
-    "GCP_PROJECT_ID",
-    "jga-sandbox",
-)
-
-GCP_LOCATION = os.getenv(
-    "GCP_LOCATION",
-    "europe-central2",
-)
-
 
 @dag(
     dag_id="football_data_pl_bronze",
