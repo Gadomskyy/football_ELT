@@ -18,6 +18,7 @@ def extract_flatten_and_load(
     location: str = "europe-central2",
     timeout_seconds: int = 60,
     write_disposition: str = "WRITE_TRUNCATE",
+    allow_empty: bool = False
 ) -> dict[str, Any]:
     """
     Fetches JSON from the API, flattens the specified list of records
@@ -72,6 +73,12 @@ def extract_flatten_and_load(
 
     records = payload.get(records_key)
 
+    table_id = (
+        f"{project_id}."
+        f"{dataset_id}."
+        f"{table_name}"
+    )
+
     if not isinstance(records, list):
         raise ValueError(
             f"Field '{records_key}' does not exist "
@@ -79,10 +86,25 @@ def extract_flatten_and_load(
         )
 
     if not records:
+        if allow_empty:
+            result = {
+                "table_id": table_id,
+                "source_records": 0,
+                "loaded_rows": 0,
+                "status": "empty_source_accepted",
+            }
+
+            print(
+                f"API returned an empty '{records_key}' list. "
+                f"No data was loaded into {table_id}."
+            )
+
+            return result
+
         raise ValueError(
             f"Field '{records_key}' contains an empty list."
         )
-
+    
     dataframe = pd.json_normalize(
         records,
         sep="_",
@@ -97,12 +119,6 @@ def extract_flatten_and_load(
             dataframe[column] = dataframe[column].apply(
                 _serialize_nested_value
             )
-
-    table_id = (
-        f"{project_id}."
-        f"{dataset_id}."
-        f"{table_name}"
-    )
 
     client = bigquery.Client(
         project=project_id,
