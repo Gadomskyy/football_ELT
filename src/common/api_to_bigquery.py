@@ -73,6 +73,12 @@ def extract_flatten_and_load(
 
     records = payload.get(records_key)
 
+    table_id = (
+        f"{project_id}."
+        f"{dataset_id}."
+        f"{table_name}"
+    )
+
     if not isinstance(records, list):
         raise ValueError(
             f"Field '{records_key}' does not exist "
@@ -113,12 +119,6 @@ def extract_flatten_and_load(
             dataframe[column] = dataframe[column].apply(
                 _serialize_nested_value
             )
-
-    table_id = (
-        f"{project_id}."
-        f"{dataset_id}."
-        f"{table_name}"
-    )
 
     client = bigquery.Client(
         project=project_id,
