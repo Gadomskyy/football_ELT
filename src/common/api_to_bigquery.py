@@ -18,6 +18,7 @@ def extract_flatten_and_load(
     location: str = "europe-central2",
     timeout_seconds: int = 60,
     write_disposition: str = "WRITE_TRUNCATE",
+    allow_empty: bool = False
 ) -> dict[str, Any]:
     """
     Fetches JSON from the API, flattens the specified list of records
@@ -79,10 +80,25 @@ def extract_flatten_and_load(
         )
 
     if not records:
+        if allow_empty:
+            result = {
+                "table_id": table_id,
+                "source_records": 0,
+                "loaded_rows": 0,
+                "status": "empty_source_accepted",
+            }
+
+            print(
+                f"API returned an empty '{records_key}' list. "
+                f"No data was loaded into {table_id}."
+            )
+
+            return result
+
         raise ValueError(
             f"Field '{records_key}' contains an empty list."
         )
-
+    
     dataframe = pd.json_normalize(
         records,
         sep="_",
