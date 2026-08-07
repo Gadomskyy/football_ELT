@@ -143,17 +143,14 @@ sources:
 
     tables:
 
-      name: football_data_pl_matches_2024_25
-      description: "Premier League matches for the 2024/2025 season."
-      columns:
-        - *pl_matches_structure
+      - name: football_data_pl_matches_2024_25
+        description: "Premier League matches for the 2024/2025 season."
+        <<: *pl_matches_structure
 
-      name: football_data_pl_matches_2025_26
-      description: "Premier League matches for the 2025/2026 season."
-      columns:
-        - *pl_matches_structure
+      - name: football_data_pl_matches_2025_26
+        description: "Premier League matches for the 2025/2026 season."
+        <<: *pl_matches_structure
 
-      name: football_data_pl_matches_2026_27
-      description: "Premier League matches for the 2026/2027 season."
-      columns:
-        - *pl_matches_structure
+      - name: football_data_pl_matches_2026_27
+        description: "Premier League matches for the 2026/2027 season."
+        <<: *pl_matches_structure
