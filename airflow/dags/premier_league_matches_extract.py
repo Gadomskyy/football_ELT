@@ -13,14 +13,14 @@ API_URL = (
 )
 
 @dag(
-    dag_id="football_data_pl_bronze",
+    dag_id="football_data_pl_matches_bronze",
     description=(
         """
         Loads Premier League matches from the football-data.org API into a BigQuery table in the bronze layer.
         Contains data for the seasons: 2024/2025, 2025/2026, and 2026/2027.       
         """
     ),
-    schedule=None,
+    schedule="@daily",
     start_date=datetime(2026,1,1,tzinfo=timezone.utc),
     catchup=False,
     max_active_runs=1,
