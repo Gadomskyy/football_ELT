@@ -84,6 +84,7 @@ x-airflow-common:
     GCP_LOCATION: "${GCP_LOCATION}"
     DBT_PROJECT_DIR: "/opt/airflow/dbt"
     DBT_PROFILES_DIR: "/opt/airflow/dbt_profiles"
+    FOOTBALL_DATA_API_KEY: "${FOOTBALL_DATA_API_KEY}"
 
     PYTHONPATH: "/opt/airflow"
     # yamllint disable rule:line-length
