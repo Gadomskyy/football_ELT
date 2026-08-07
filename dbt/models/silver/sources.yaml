@@ -1,137 +1,159 @@
 version: 2
 
+anchors:
+  - &pl_matches_structure
+    columns:
+      - name: id
+        description: "Primary key - match ID"
+        data_tests:
+          - unique
+          - not_null
+      - name: utcDate
+        description: "Date at which match started - in UTC"
+        data_tests:
+          - not_null
+      - name: status
+        description: "Status of the match"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED']
+      - name: matchday
+        description: "Integer - a matchday at which the fixture took place"
+        data_tests:
+          - not_null
+      - name: stage
+        description: "Which part of the season the match took place at"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['REGULAR_SEASON']
+      - name: group
+        description: "Allows filtering for groupings in a competition. Always null"
+      - name: lastUpdated
+        description: "Timestamp at which the match info has been updated most recently. Timezone: UTC"
+        data_tests:
+          - not_null
+      - name: referees
+        description: "Nested object. Contains id, name and nationality of the referee. String type."
+      - name: area_id
+        description: "ID for the area (ex. Country) where match took place in"
+      - name: area_name
+        description: "Name for the area (ex. Country) where match took place in"
+      - name: area_code
+        description: "Code for the area (ex. Country) where match took place in"
+      - name: area_flag
+        description: "Link to flag for the area (ex. Country) where match took place in"
+      - name: competition_id
+        description: "ID of the competition"
+        data_tests:
+          - not_null
+      - name: competition_name
+        description: "Name of the competition"
+        data_tests:
+          - not_null
+      - name: competition_code
+        description: "Code of the competition"
+        data_tests:
+          - not_null
+      - name: competition_type
+        description: "Type of the competition (League, Cup etc.)"
+        data_tests:
+          - not_null
+      - name: competition_emblem
+        description: "Logo of the competition"
+      - name: season_id
+        description: "Identifier of the season for a competition"
+        data_tests:
+          - not_null
+      - name: season_startDate
+        description: "Start date of the competition. YYYY-MM-DD"
+      - name: season_endDate
+        description: "End date of the competition. YYYY-MM-DD"
+      - name: season_currentMatchday
+        description: "Integer - the matchday of the competition at the time of last update date. If season hasn't started yet, it defaults to 1."
+      - name: season_winner
+        description: "Winner of the whole competition for a specified season."
+      - name: homeTeam_id
+        description: "ID of the match's home team."
+        data_tests:
+          - not_null
+      - name: homeTeam_name
+        description: "Full name of the match's home team."
+        data_tests:
+          - not_null
+      - name: homeTeam_shortName
+        description: "Abbreviated name of the match's home team."
+      - name: homeTeam_tla
+        description: "Three-Letter Acronym of the match's home team."
+        data_tests:
+          - not_null
+      - name: homeTeam_crest
+        description: "Link to creast of the home team."
+      - name: awayTeam_id
+        description: "ID of the match's away team."
+        data_tests:
+          - not_null
+      - name: awayTeam_name
+        description: "Full name of the match's away team."
+        data_tests:
+          - not_null
+      - name: awayTeam_shortName
+        description: "Abbreviated name of the match's away team."
+      - name: awayTeam_tla
+        description: "Three-Letter Acronym of the match's away team."
+        data_tests:
+          - not_null
+      - name: awayTeam_crest
+        description: "Link to creast of the away team."
+      - name: score_winner
+        description: "The resolution of the match. Indicates the winning team or lack thereof."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['AWAY_TEAM', 'HOME_TEAM', 'DRAW']
+      - name: score_duration
+        description: "Indicates whether the score was reached in regulation or not. For PL, only REGULAR is possible"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['REGULAR']
+      - name: score_fullTime_home
+        description: "Integer. Number of goals scored by home team at fulltime."
+      - name: score_fullTime_away
+        description: "Integer. Number of goals scored by away team at fulltime."
+      - name: score_halfTime_home
+        description: "Integer. Number of goals scored by home team at half-time."
+      - name: score_halfTime_away
+        description: "Integer. Number of goals scored by away team at half-time."
+      - name: odds_msg
+        description: "Odds for the match. Not available at current API plan."
+
+
 sources:
+
   - name: pl_data
-    description: "Data regarding PL teams, seasons and scorers starting from 2024/2025"
+    description: >
+      Premier League source data containing matches,
+      teams, seasons and scorers starting from 2024/2025.
+
     database: jga-sandbox
     schema: bronze
-    
+
     tables:
-      - name: football_data_pl_matches_2024_25
-        description: "Data for each match played in 2024/2025 PL season"
-        columns:
-          - name: id
-            description: "Primary key - match ID"
-            tests:
-              - unique
-              - not_null
-          - name: utcDate
-            description: "Date at which match started - in UTC"
-            tests:
-              - not_null
-          - name: status
-            description: "Status of the match"
-            tests:
-              - accepted_values:
-                arguments:
-                  values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED']
-          - name: matchday
-            description: "Integer - a matchday at which the fixture took place"
-            tests:
-              - not_null
-          - name: stage
-            description: "Which part of the season the match took place at"
-            tests:
-              - not_null
-              - accepted_values:
-                  arguments:
-                    values: ['REGULAR_SEASON']
-          - name: group
-            description: "Allows filtering for groupings in a competition. Always null"
-          - name: lastUpdated
-            description: "Timestamp at which the match info has been updated most recently. Timezone: UTC"
-            tests:
-              - not null
-          - name: referees
-            description: "Nested object. Contains id, name and nationality of the referee"
-          - name: area_id
-            description: "ID for the area (ex. Country) where match took place in"
-          - name: area_name
-            description: "Name for the area (ex. Country) where match took place in"
-          - name: area_code
-            description: "Code for the area (ex. Country) where match took place in"
-          - name: area_flag
-            description: "Link to flag for the area (ex. Country) where match took place in"
-          - name: competition_id
-            description: "ID of the competition"
-            tests:
-              - not_null
-          - name: competition_name
-            description: "Name of the competition"
-            tests:
-              - not_null
-          - name: competition_code
-            description: "Code of the competition"
-            tests:
-              - not_null
-          - name: competition_type
-            description: "Type of the competition (League, Cup etc.)"
-            tests:
-              - not_null
-          - name: competition_emblem
-            description: "Logo of the competition"
-          - name: season_id
-            description: "Identifier of the season for a competition"
-            tests:
-              - not_null
-          - name: season_startDate
-            description: "Start date of the competition. YYYY-MM-DD"
-          - name: season_endDate
-            description: "End date of the competition. YYYY-MM-DD"
-          - name: season_currentMatchday
-            description: "Integer - the matchday of the competition at the time of last update date. If season hasn't started yet, it defaults to 1."
-          - name: season_winner
-            description: "Winner of the whole competition for a specified season."
-          - name: homeTeam_name
-            description: "Full name of the match's home team."
-            tests:
-              - not_null
-          - name: homeTeam_shortName
-            description: "Abbreviated name of the match's home team."
-          - name: homeTeam_tla
-            description: "Three-Letter Acronym of the match's home team."
-            tests:
-              - not_null
-          - name: homeTeam_crest
-            description: "Link to creast of the home team."
-          - name: awayTeam_name
-            description: "Full name of the match's away team."
-            tests:
-              - not_null
-          - name: awayTeam_shortName
-            description: "Abbreviated name of the match's away team."
-          - name: awayTeam_tla
-            description: "Three-Letter Acronym of the match's away team."
-            tests:
-              - not_null
-          - name: awayTeam_crest
-            description: "Link to creast of the away team."
-          - name: score_winner
-            description: "The resolution of the match. Indicates the winning team or lack thereof."
-            tests:
-              - accepted_values:
-                  arguments:
-                    values: ['AWAY_TEAM', 'HOME_TEAM', 'DRAW']
-          - name: score_duration
-            description: "Indicates whether the score was reached in regulation or not. For PL, only REGULAR is possible"
-            tests:
-              - accepted_values:
-                  arguments:
-                    values: ['REGULAR']
-          - name: score_fullTime_home
-            description: "Integer. Number of goals scored by home team at fulltime."
-          - name: score_fullTime_away
-            description: "Integer. Number of goals scored by away team at fulltime."
-          - name: score_halfTime_home
-            description: "Integer. Number of goals scored by home team at half-time."
-          - name: score_halfTime_away
-            description: "Integer. Number of goals scored by away team at half-time."
-          - name: odds_msg
-            description: "Odds for the match. Not available at current API plan."
 
+      name: football_data_pl_matches_2024_25
+      description: "Premier League matches for the 2024/2025 season."
+      columns:
+        - *pl_matches_structure
 
+      name: football_data_pl_matches_2025_26
+      description: "Premier League matches for the 2025/2026 season."
+      columns:
+        - *pl_matches_structure
 
-          
-          
-
-
+      name: football_data_pl_matches_2026_27
+      description: "Premier League matches for the 2026/2027 season."
+      columns:
+        - *pl_matches_structure
