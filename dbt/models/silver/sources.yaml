@@ -130,6 +130,73 @@ anchors:
       - name: odds_msg
         description: "Odds for the match. Not available at current API plan."
 
+  - &pl_teams_structure
+    columns:
+      - name: id
+        description: "Primary key - team ID"
+        data_tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Full name of the team."
+        data_tests:
+          - unique
+          - not_null
+      - name: shortName
+        description: "Abbreviated name of the team."
+        data_tests:
+          - unique
+          - not_null
+      - name: tla
+        description: "Three-Letter Acronym of the team."
+        data_tests:
+          - unique
+          - not_null
+      - name: crest
+        description: "Link to the crest of the team."
+      - name: address
+        description: "Full address of the team's stadium."
+      - name: website
+        description: "Team's official site URL."
+      - name: founded
+        description: "Year when team was founded."
+      - name: venue
+        description: "Name of the team's stadium."
+      - name: runningCompetitions
+        description: "String. JSON formatted list of competitions the team is competing in."
+      - name: squad
+        description: "String. JSON formatted list of team's full squad (includes name, position, DOB and nationality)"
+      - name: squad
+        description: "String. JSON formatted list of team's staff."
+      - name: lastUpdated
+        description: "Timestamp at which the match info has been updated most recently. Timezone: UTC"
+        data_tests:
+          - not_null
+      - name: area_id
+        description: "ID for the area (ex. Country) where match took place in"
+      - name: area_name
+        description: "Name for the area (ex. Country) where match took place in"
+      - name: area_code
+        description: "Code for the area (ex. Country) where match took place in"
+      - name: area_flag
+        description: "Link to flag for the area (ex. Country) where match took place in"
+      - name: coach_id
+        description: "ID for the team's coach."
+      - name: coach_firstName
+        description: "Team's coach first name."
+      - name: coach_lastName
+        description: "Team's coach last name."
+      - name: coach_name
+        description: "Team's coach full name."
+      - name: coach_dateOfBirth
+        description: "Team's coach DOB."
+      - name: coach_nationality
+        description: "Team's coach nationality."
+      - name: coach_contract_start
+        description: "Date from which coach started working with the team."
+      - name: coach_contract_until
+        description: "The date until which the coach's contract is valid."
+
 
 sources:
 
@@ -154,3 +221,15 @@ sources:
       - name: football_data_pl_matches_2026_27
         description: "Premier League matches for the 2026/2027 season."
         <<: *pl_matches_structure
+
+      - name: football_data_pl_teams_2024_25
+        description: "Premier League teams for the 2024/2025 season."
+        <<: *pl_teams_structure
+
+      - name: football_data_pl_teams_2025_26
+        description: "Premier League teams for the 2025/2026 season."
+        <<: *pl_teams_structure
+
+      - name: football_data_pl_teams_2026_27
+        description: "Premier League teams for the 2026/2027 season."
+        <<: *pl_teams_structure
