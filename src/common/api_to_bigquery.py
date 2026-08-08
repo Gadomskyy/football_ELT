@@ -18,7 +18,8 @@ def extract_flatten_and_load(
     location: str = "europe-central2",
     timeout_seconds: int = 60,
     write_disposition: str = "WRITE_TRUNCATE",
-    allow_empty: bool = False
+    allow_empty: bool = False,
+    empty_schema_template_table: str | None = None,
 ) -> dict[str, Any]:
     """
     Fetches JSON from the API, flattens the specified list of records
@@ -58,6 +59,13 @@ def extract_flatten_and_load(
         WRITE_TRUNCATE – replaces the table,
         WRITE_APPEND – appends data,
         WRITE_EMPTY – works only for an empty table.
+
+    allow_empty:
+        If True, allows the situation where API call returns 0 rows.
+        Used when setting up a table for future seasons which have not started yet and may not have data available.
+
+    empty_schema_template_table:
+        Allows for creating an empty table with when no data has been returned.
     """
 
     response = requests.get(
@@ -86,25 +94,49 @@ def extract_flatten_and_load(
         )
 
     if not records:
-        if allow_empty:
-            result = {
-                "table_id": table_id,
-                "source_records": 0,
-                "loaded_rows": 0,
-                "status": "empty_source_accepted",
-            }
-
-            print(
-                f"API returned an empty '{records_key}' list. "
-                f"No data was loaded into {table_id}."
+        if not allow_empty:
+            raise ValueError(
+                f"Field '{records_key}' contains an empty list."
             )
 
-            return result
-
-        raise ValueError(
-            f"Field '{records_key}' contains an empty list."
+        client = bigquery.Client(
+            project=project_id,
+            location=location,
         )
-    
+
+        if empty_schema_template_table:
+            template_table_id = (
+                f"{project_id}.{dataset_id}."
+                f"{empty_schema_template_table}"
+            )
+
+            template_table = client.get_table(
+                template_table_id
+            )
+
+            empty_table = bigquery.Table(
+                table_id,
+                schema=template_table.schema,
+            )
+
+            client.create_table(
+                empty_table,
+                exists_ok=True,
+            )
+
+            print(
+                f"Empty source accepted. "
+                f"Created/verified empty table {table_id} "
+                f"using schema from {template_table_id}."
+            )
+
+        return {
+            "table_id": table_id,
+            "source_records": 0,
+            "loaded_rows": 0,
+            "status": "empty_source_accepted",
+        }
+        
     dataframe = pd.json_normalize(
         records,
         sep="_",

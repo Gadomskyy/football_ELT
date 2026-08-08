@@ -65,7 +65,11 @@ def football_data_pl_top_scorers_bronze():
             table_name=table_name,
             location=GCP_LOCATION,
             write_disposition="WRITE_TRUNCATE",
-            allow_empty=(season == max(SEASONS)) #allows for empty list for the last season - as it can be the future one
+            allow_empty=(season == max(SEASONS)), #allows for empty list for the last season - as it can be the future one
+            empty_schema_template_table=(
+                "football_data_pl_top_scorers_2025_26" #creates an empty table with a schema as in the specified table
+                if season == max(SEASONS)
+                else None),
         )
 
     
