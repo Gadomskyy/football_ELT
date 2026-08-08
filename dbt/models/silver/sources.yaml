@@ -256,15 +256,15 @@ anchors:
         data_tests:
           - not_null
       - name: team_shortName
-        description: "Abbreviated name of the  team player plays at.."
+        description: "Abbreviated name of the  team player plays at."
         data_tests:
           - not_null
       - name: team_tla
-        description: "Three-Letter Acronym of the  team player plays at.."
+        description: "Three-Letter Acronym of the  team player plays at."
         data_tests:
           - not_null
       - name: team_crest
-        description: "Link to the crest of the  team player plays at.."
+        description: "Link to the crest of the  team player plays at."
       - name: team_address
         description: "Full address of the player's team stadium."
       - name: team_website
@@ -325,3 +325,46 @@ sources:
       - name: football_data_pl_top_scorers_2026_27
         description: "Premier League top 100 scorers for the 2026/2027 season."
         <<: *pl_top_scorers_structure
+
+      - name: football_data_pl_winners_bronze
+        description: "Contains information on PL winners (detailed info available from 1990/1991 season)."
+        columns:
+          - name: id
+            description: "Primary key - season ID"
+            data_tests:
+              - unique
+              - not_null
+          - name: startDate
+            description: "Start of the season date. YYYY-MM-DD"
+            data_tests:
+              - not_null
+          - name: endDate
+            description: "End of the season date. YYYY-MM-DD"
+            data_tests:
+              - not_null
+          - name: currentMatchday
+            description: "Current matchday of the season. 1 if season hasnt started. Last matchday if season ended (38 or 42)"
+          - name: winner
+            description: "Always null. This field should not be referred to as the winner of the competition"
+          - name: winner_id
+            description: "Float. ID of the team that won a competition in that season."
+          - name: winner_name
+            description: "Full name of the team that won a competition in that season."
+          - name: winner_shortName
+            description: "Short name of the team that won a competition in that season."
+          - name: winner_tla
+            description: "Three-Letter Acronym of the team that won a competition in that season."
+          - name: winner_crest
+            description: "Link to the crest of the team that won a competition in that season."
+          - name: winner_address
+            description: "Full address of the winner's stadium."
+          - name: winner_website
+            description: "Winner's official site URL."
+          - name: winner_founded
+            description: "Year when winning team was founded."
+          - name: winner_clubColors
+            description: "Main colors of the winning team."
+          - name: winner_venue
+            description: "Stadium name of the winning team."
+          - name: winner_lastUpdated
+            description: "Timestamp at which the winner info has been updated most recently. Timezone: UTC. Please be aware that this source has not been updated since 2022."
