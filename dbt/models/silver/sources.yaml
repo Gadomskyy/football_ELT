@@ -165,8 +165,8 @@ anchors:
       - name: runningCompetitions
         description: "String. JSON formatted list of competitions the team is competing in."
       - name: squad
-        description: "String. JSON formatted list of team's full squad (includes name, position, DOB and nationality)"
-      - name: squad
+        description: "String. JSON formatted list of team's full squad (includes name, position, DOB and nationality)."
+      - name: staff
         description: "String. JSON formatted list of team's staff."
       - name: lastUpdated
         description: "Timestamp at which the match info has been updated most recently. Timezone: UTC"
@@ -275,15 +275,16 @@ anchors:
         description: "Main colors of the player's team."
       - name: team_venue
         description: "Stadium name of the player's team."
-      - name: player_lastUpdated
+      - name: team_lastUpdated
         description: "Timestamp at which the team info has been updated most recently. Timezone: UTC"
 
 sources:
 
   - name: pl_data
     description: >
-      Premier League source data containing matches,
-      teams, seasons and scorers starting from 2024/2025.
+      Raw Premier League data loaded from football-data.org.
+      Contains match, team and top-scorer data starting from
+      the 2024/2025 season, as well as historical season winner data.
 
     database: jga-sandbox
     schema: bronze
