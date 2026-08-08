@@ -197,6 +197,86 @@ anchors:
       - name: coach_contract_until
         description: "The date until which the coach's contract is valid."
 
+  - &pl_top_scorers_structure
+    columns:
+      - name: playedMatches
+        description: "Integer. Number of matches played in a season."
+        data_tests:
+          - not_null
+      - name: goals
+        description: "Integer. Number of goals scored in a season."
+      - name: assists
+        description: "Float. Number of assist in a season."
+      - name: penalties
+        description: "Float. Number of penalties scored in a season."
+      - name: player_id
+        description: "Unique ID of the player."
+        data_tests:
+          - unique
+          - not_null
+      - name: player_name
+        description: "Full name of the player."
+        data_tests:
+          - not_null
+      - name: player_firstName
+        description: "First name of the player. Can be null"
+      - name: player_lastName
+        description: "Last name of the player."
+        data_tests:
+          - not_null
+      - name: player_dateOfBirth
+        description: "DOB of the player."
+        data_tests:
+          - not_null
+      - name: player_nationality
+        description: "Nationality of the player."
+        data_tests:
+          - not_null
+      - name: player_section
+        description: "Main line at which player plays at."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Midfield', 'Offence', 'Defence', 'Centre-Forward']
+      - name: player_position
+        description: "Main position of the player."
+      - name: player_shirtNumber
+        description: "Shirt number of the player."
+      - name: player_lastUpdated
+        description: "Timestamp at which the player info has been updated most recently. Timezone: UTC"
+        data_tests:
+          - not_null
+      - name: team_id
+        description: "Player's team ID."
+        data_tests:
+          - not_null
+      - name: team_name
+        description: "Full name of the team player plays at."
+        data_tests:
+          - not_null
+      - name: team_shortName
+        description: "Abbreviated name of the  team player plays at.."
+        data_tests:
+          - not_null
+      - name: team_tla
+        description: "Three-Letter Acronym of the  team player plays at.."
+        data_tests:
+          - not_null
+      - name: team_crest
+        description: "Link to the crest of the  team player plays at.."
+      - name: team_address
+        description: "Full address of the player's team stadium."
+      - name: team_website
+        description: "Player's team official site URL."
+      - name: team_founded
+        description: "Year when player's team was founded."
+      - name: team_clubColors
+        description: "Main colors of the player's team."
+      - name: team_venue
+        description: "Stadium name of the player's team."
+      - name: player_lastUpdated
+        description: "Timestamp at which the team info has been updated most recently. Timezone: UTC"
 
 sources:
 
@@ -233,3 +313,15 @@ sources:
       - name: football_data_pl_teams_2026_27
         description: "Premier League teams for the 2026/2027 season."
         <<: *pl_teams_structure
+
+      - name: football_data_pl_top_scorers_2024_25
+        description: "Premier League top 100 scorers for the 2024/2025 season."
+        <<: *pl_top_scorers_structure
+
+      - name: football_data_pl_top_scorers_2025_26
+        description: "Premier League top 100 scorers for the 2025/2026 season."
+        <<: *pl_top_scorers_structure
+
+      - name: football_data_pl_top_scorers_2026_27
+        description: "Premier League top 100 scorers for the 2026/2027 season."
+        <<: *pl_top_scorers_structure
