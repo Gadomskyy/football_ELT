@@ -16,7 +16,7 @@ API_URL = ("https://api.football-data.org/v4/competitions/PL")
         Loads Premier League winners from the football-data.org API into a BigQuery table in the bronze layer.     
         """
     ),
-    schedule=None,
+    schedule= "@monthly",
     start_date=datetime(2026,1,1,tzinfo=timezone.utc),
     catchup=False,
     max_active_runs=1,
