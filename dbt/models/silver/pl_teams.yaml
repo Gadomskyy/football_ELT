@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: pl_teams
+    description: "Table containing all teams for all relevant seasons (24/25, 25/26, 26/27). Grain: Season + Team"
+    columns:
+      - name: season
+        description: "Code for the season at which the team played in PL"
+        data_tests:
+          - not_null
+      - name: team_id
+        description: "Code uniquely identifying a team."
+        data_tests:
+          - not_null
+      - name: team_name
+        description: "Full name of the team."
+        data_tests:
+          - not_null
+      - name: tla
+        description: "Three letter code for each team."
+        data_tests:
+          - not_null
+      - name: founded_year
+        description: "Year at which the team has been founded."
+      - name: stadium
+        description: "Name of the team's stadium."
+      - name: country
+        description: "Three letter code for team's country of origin."
+      
