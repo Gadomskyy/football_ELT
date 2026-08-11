@@ -24,9 +24,10 @@ SELECT
     t.name AS team_name,
     SAFE_CAST(JSON_VALUE(player, '$.id') AS INT64) AS player_id,
     JSON_VALUE(player, '$.name') AS player_name,
-    JSON_VALUE(player, '$.position') AS player_position,
+    JSON_VALUE(player, '$.position') AS player_detailed_position,
+    {{ player_position("JSON_VALUE(player, '$.position')") }} AS player_position,
     SAFE_CAST(JSON_VALUE(player, '$.dateOfBirth') AS DATE) AS player_dob,
-    JSON_VALUE(player, '$.nationality') AS player_nationality
+    JSON_VALUE(player, '$.nationality') AS player_nationality,
 FROM teams_24_25 AS t,
 UNNEST(JSON_EXTRACT_ARRAY(t.squad)) AS player
 ),
@@ -38,7 +39,8 @@ SELECT
     t.name AS team_name,
     SAFE_CAST(JSON_VALUE(player, '$.id') AS INT64) AS player_id,
     JSON_VALUE(player, '$.name') AS player_name,
-    JSON_VALUE(player, '$.position') AS player_position,
+    JSON_VALUE(player, '$.position') AS player_detailed_position,
+    {{ player_position("JSON_VALUE(player, '$.position')") }} AS player_position,
     SAFE_CAST(JSON_VALUE(player, '$.dateOfBirth') AS DATE) AS player_dob,
     JSON_VALUE(player, '$.nationality') AS player_nationality
 FROM teams_25_26 AS t,
@@ -52,7 +54,8 @@ SELECT
     t.name AS team_name,
     SAFE_CAST(JSON_VALUE(player, '$.id') AS INT64) AS player_id,
     JSON_VALUE(player, '$.name') AS player_name,
-    JSON_VALUE(player, '$.position') AS player_position,
+    JSON_VALUE(player, '$.position') AS player_detailed_position,
+    {{ player_position("JSON_VALUE(player, '$.position')") }} AS player_position,
     SAFE_CAST(JSON_VALUE(player, '$.dateOfBirth') AS DATE) AS player_dob,
     JSON_VALUE(player, '$.nationality') AS player_nationality
 FROM teams_26_27 AS t,
