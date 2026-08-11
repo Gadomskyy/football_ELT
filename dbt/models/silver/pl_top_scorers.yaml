@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: pl_top_scorers
+    description: "Table consisting top 100 scorers from PL seasons 2024/2025, 2025/2026 and 2026/2027. Grain: Season + player"
+    columns:
+      - name: season
+        description: "Season code."
+        data_tests:
+          - not_null
+      - name: player_id
+        description: "Unique ID for a player."
+        data_tests:
+          - not_null
+      - name: player_name
+        description: "Full name of a player."
+        data_tests:
+          - not_null
+      - name: player_nationality
+        description: "Nationality of a player. Full, not abbreviated."
+      - name: played_matches
+        description: "Number of matches played in a season."
+      - name: goals
+        description: "Number of goals scored in a season. Includes penalties."
+      - name: assists
+        description: "Number of assists scored in a season."
+      - name: penalties
+        description: "Number of penalties scored in a season."
+      - name: canadian points
+        description: "Number of canadian points (goals + assists) scored in a season."

@@ -1,0 +1,27 @@
+version 2:
+
+models: 
+  - name: pl_winners
+    description: "A dictionary table for all Premier League winners. Onwards from 1992/1993."
+    columns:
+      - name: season_id
+        description: "Unique ID for each season."
+        data_tests:
+          - unique
+          - not_null
+      - name: season
+        description: "Season code eg. 2024/2025"
+        data_tests:
+          - not_null
+      - name: season_start_date
+        description: "Start date of the season. YYYY-MM-DD."
+      - name: season_end_date
+        description: "End date of the season. YYYY-MM-DD."
+      - name: winner
+        description: "Name of the winning team."
+      - name: winner_id
+        description: "Unique identifier of the winning team."
+      - name: winner_tla
+        description: "Three letter code of the winning team."
+
+ 
