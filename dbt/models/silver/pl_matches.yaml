@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: pl_matches
+    description: "Table containing PL matches from seasons 2024/2025, 2025/2026 and 2026/2027"
+    columns:
+      - name: season
+        desctription: "Season at which match took place."
+        data_tests:
+          - not_null
+      - name: match_id
+        desctription: "Unique ID for a match."
+        data_tests:
+          - unique
+          - not_null
+      - name: match_date
+        desctription: "Date of the match in YYYY-MM-DD format."
+        data_tests:
+          - not_null
+      - name: match_date_utc
+        desctription: "Date and hour of the match in YYYY-MM-DDTHH:MM:SS format. UTC timezone."
+        data_tests:
+          - not_null
+      - name: match_status
+        description: "Status of the match"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED']
+      - name: matchday
+        description: "Integer - a matchday at which the fixture took place"
+        data_tests:
+          - not_null
+      - name: referee
+        description: "First and last name of the referee officiating a match."
+      - name: competition_id
+        description: "ID of the competition"
+        data_tests:
+          - not_null
+      - name: competition_name
+        description: "Name of the competition"
+        data_tests:
+          - not_null
+      - name: competition_code
+        description: "Code of the competition"
+        data_tests:
+          - not_null
+      - name: season_id
+        description: "Identifier of the season for a competition"
+        data_tests:
+          - not_null
+      - name: home_team_id
+        description: "ID of the match's home team."
+        data_tests:
+          - not_null
+      - name: away_team_id
+        description: "ID of the match's away team."
+        data_tests:
+          - not_null
+      - name: score_winner
+        description: "The resolution of the match. Indicates the winning team or lack thereof."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['AWAY_TEAM', 'HOME_TEAM', 'DRAW']
+      - name: score_full_time_home
+        description: "Integer. Number of goals scored by home team at fulltime."
+      - name: score_full_time_away
+        description: "Integer. Number of goals scored by away team at fulltime."
+      - name: score_full_time
+        description: "String. Score at full-time in X:Y format."
+      - name: score_half_time_home
+        description: "Integer. Number of goals scored by home team at half-time."
+      - name: score_half_time_away
+        description: "Integer. Number of goals scored by away team at half-time."
+      - name: score_half_time
+        description: "String. Score at half-time in X:Y format."
