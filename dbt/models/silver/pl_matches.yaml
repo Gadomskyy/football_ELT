@@ -5,20 +5,20 @@ models:
     description: "Table containing PL matches from seasons 2024/2025, 2025/2026 and 2026/2027"
     columns:
       - name: season
-        desctription: "Season at which match took place."
+        description: "Season at which match took place."
         data_tests:
           - not_null
       - name: match_id
-        desctription: "Unique ID for a match."
+        description: "Unique ID for a match."
         data_tests:
           - unique
           - not_null
       - name: match_date
-        desctription: "Date of the match in YYYY-MM-DD format."
+        description: "Date of the match in YYYY-MM-DD format."
         data_tests:
           - not_null
       - name: match_date_utc
-        desctription: "Date and hour of the match in YYYY-MM-DDTHH:MM:SS format. UTC timezone."
+        description: "Date and hour of the match in YYYY-MM-DDTHH:MM:SS format. UTC timezone."
         data_tests:
           - not_null
       - name: match_status
