@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Date dimension model containing daily granular calendar and ISO attributes from 2020 through 2030."
+    columns:
+      - name: date_key
+        description: "Surrogate key for the date in YYYYMMDD integer format."
+        data_tests:
+          - unique
+          - not_null
+      - name: date
+        description: "Calendar date (YYYY-MM-DD)."
+      - name: year
+        description: "Four-digit calendar year (e.g., 2024)."
+      - name: quarter
+        description: "Calendar quarter of the year (1 to 4)."
+      - name: month
+        description: "Calendar month number (1 to 12)."
+      - name: month_name
+        description: "Full English name of the month (e.g., 'January')."
+      - name: year_month
+        description: "Formatted year and month string (YYYY-MM)."
+      - name: iso_year
+        description: "ISO 8601 week-numbering year."
+      - name: iso_week
+        description: "ISO 8601 week number (1 to 53)."
+      - name: day_of_month
+        description: "Day of the month (1 to 31)."
+      - name: day_of_week
+        description: "Day of the week as an integer (1 = Sunday, 7 = Saturday)."
+      - name: day_name
+        description: "Full English name of the day of the week (e.g., 'Monday')."
+      - name: is_weekend
+        description: "Boolean flag indicating whether the date falls on a weekend (True for Sunday/Saturday)."
