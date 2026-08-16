@@ -1,0 +1,23 @@
+version 2:
+
+models: 
+  - name: dim_seasons
+    description: "A dimension table containing basicinfromation about PL season. Grain: 1 row = 1 season"
+    columns:
+      - name: season_id
+        description: "Unique ID for each season."
+        data_tests:
+          - unique
+          - not_null
+      - name: season
+        description: "Season code eg. 2024/2025"
+        data_tests:
+          - not_null
+      - name: season_start_date
+        description: "Start date of the season. YYYY-MM-DD."
+      - name: season_end_date
+        description: "End date of the season. YYYY-MM-DD."
+      - name: start_year
+        description: "Year when season started."
+      - name: end_year
+        description: "Year when season ended."

@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_teams
+    description: "Dimension table containing basic info for PL teams. Grain: 1 row = 1 team."
+    columns:
+      - name: team_id
+        description: "Unique team ID."
+        data_tests:
+          - unique
+          - not_null
+      - name: team_name
+        description: "Team's full name."
+        data_tests:
+          - not_null
+      - name: tla
+        description: "Three letter acronym of the club"
+      - name: founded_year
+        description: "Club's founding year."
+      - name: stadium
+        description: "Full stadium name."
+      - name: country
+        description: "Country of origin."
+        data_tests:
+          - not_null
+      - name: last_season
+        description: "Last season where team was present in PL"
+        data_tests:
+          - not_null
