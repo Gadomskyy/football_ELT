@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_teams
-    description: "Dimension table containing basic info for PL teams. Grain: Club"
+    description: "Dimension table containing basic info for PL teams. Grain: 1 row = 1 team."
     columns:
       - name: team_id
         description: "Unique team ID."

@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_date
-    description: "Date dimension model containing daily granular calendar and ISO attributes from 2020 through 2030."
+    description: "Date dimension model containing daily granular calendar and ISO attributes from 2020 through 2030. Grain: 1 row = 1 day."
     columns:
       - name: date_key
         description: "Surrogate key for the date in YYYYMMDD integer format."

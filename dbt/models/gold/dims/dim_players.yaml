@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_players
-    description: "Dimension model containing basic player information. Grain: player"
+    description: "Dimension model containing basic player information. Grain: 1 row = 1 player."
     columns:
       - name: player_id
         description: "Unique identifier for the player."
