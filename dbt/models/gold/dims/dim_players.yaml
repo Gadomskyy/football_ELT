@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_players
+    description: "Dimension table containing basic player information. Grain: Player"
+    columns:
+      - name: player_id
+        description: "Unique identifier for a player."
+        data_tests:
+          - not_null
+      - name: player_name
+        description: "Full name of the player."
+        data_tests:
+          - not_null
+      - name: player_position
+        description: "Position of the player, less granular than detailed position."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker', 'N/A']
+      - name: player_dob
+        description: "DOB of the player. YYYY-MM-DD"
+      - name: player_nationality
+        description: "Nationality of the player."
+      - name: last_season
+        description: "Last season in which the player has been registered in PL squad."
