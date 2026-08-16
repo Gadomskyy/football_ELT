@@ -2,8 +2,8 @@ WITH pl_winners_bronze AS (
     SELECT
     id AS season_id,
     {{ generate_season_code("startDate", "endDate") }} AS season,
-    startDate AS season_start_date,
-    endDate AS season_end_date,
+    CAST(startDate AS DATE) AS season_start_date,
+    CAST(endDate AS DATE) AS season_end_date,
     --manually add missing winners data
     CASE 
         WHEN startDate = '2023-08-11' THEN 'Manchester City FC'
