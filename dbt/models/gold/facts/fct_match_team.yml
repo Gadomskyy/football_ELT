@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: fct_match_team
+    description: "Fact table containing information for a match for each team. Grain: 1 row = 1 match for one team (So each match should appear twice)."
+    columns:
+      - name: match_id
+        data_type: int64
+        description: "Match identifier."
+
+      - name: season_id
+        data_type: int64
+        description: "Season identifier."
+
+      - name: match_date
+        data_type: date
+        description: "Date of the match in YYYY-MM-DD format."
+
+      - name: matchday
+        data_type: int64
+        description: "Matchday at which the match was played."
+
+      - name: competition_id
+        data_type: int64
+        description: "Unique competition ID."
+
+      - name: competition_code
+        data_type: string
+        description: "Code of the competition eg. PL -> Premier League."
+
+      - name: home_away
+        data_type: string
+        description: "Indicator whether the team was a home or away team."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['HOME', 'AWAY']
+
+      - name: home_team_id
+        data_type: int64
+        description: "ID of the home team."
+
+      - name: score_full_time
+        data_type: string
+        description: "Full-time score in X:Y format eg. 0:0."
+
+      - name: goals_for
+        data_type: int64
+        description: "Number of goals scored by a team."
+
+      - name: goals_against
+        data_type: int64
+        description: "Number of goals conceded by a team."
+
+      - name: goal_difference
+        data_type: int64
+        description: "Goal difference for the team (goals_for - goals_against)."
+
+      - name: result
+        data_type: string
+        description: "Information whether team won, lost or drawn a match."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['WIN', 'LOSS', 'DRAW']
+
+      - name: points
+        data_type: int64
+        description: "Number of points scored in a match by a team."

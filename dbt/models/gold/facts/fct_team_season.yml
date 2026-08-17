@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: fct_team_season
+    description: "Fact table containing aggregated information regarding each team's season. Grain: Team x Season."
+    columns:
+      - name: season_id
+        data_type: int64
+        description: "Season identifier."
+
+      - name: team_id
+        data_type: int64
+        description: "Team identifier."
+
+      - name: matches_played
+        data_type: int64
+        description: "Number of matches played in a season."
+
+      - name: wins
+        data_type: int64
+        description: "Number of wins in a season."
+
+      - name: draws
+        data_type: int64
+        description: "Number of draws in a season."
+
+      - name: losses
+        data_type: int64
+        description: "Number of losses in a season."
+
+      - name: goals_scored
+        data_type: int64
+        description: "Number of goals scored in a season."
+
+      - name: goals_conceded
+        data_type: int64
+        description: "Number of goals conceded in a season."
+
+      - name: goal_difference
+        data_type: int64
+        description: "Team's goal difference in a season (goals_scored - goals_conceded)."
+
+      - name: points
+        data_type: int64
+        description: "Number of points gained in a season."
+
+      - name: points_per_game
+        data_type: float64
+        description: "Number of points-per-game gained in a season."
+
+      - name: goals_scored_per_game
+        data_type: float64
+        description: "Number of goals-per-game scored in a season."
+
+      - name: goals_against_per_game
+        data_type: float64
+        description: "Number of goals-per-game conceded in a season."
+
+      - name: clean_sheets
+        data_type: int64
+        description: "Number of clean sheets."
+
+      - name: home_points
+        data_type: int64
+        description: "Number of points scored as a home team."
+
+      - name: away_points
+        data_type: int64
+        description: "Number of points scored as an away team."
+
+      - name: table_position
+        data_type: int64
+        description: "Final position in a season."
