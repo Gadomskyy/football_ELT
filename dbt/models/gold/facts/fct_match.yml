@@ -1,0 +1,99 @@
+models:
+  - name: fct_match
+    description: "Fact table containing match information. Grain: 1 row = 1 match."
+    columns:
+      - name: match_id
+        data_type: int64
+        description: "Unique match ID."
+
+      - name: season_id
+        data_type: int64
+        description: "Unique season ID."
+
+      - name: match_date
+        data_type: date
+        description: "Date when match was played in YYYY-MM-DD format."
+
+      - name: match_status
+        data_type: string
+        description: "Status of the match."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED']
+
+      - name: matchday
+        data_type: int64
+        description: "Matchday at which the match was played."
+
+      - name: referee
+        data_type: string
+        description: "First and last name of the referee."
+
+      - name: competition_id
+        data_type: int64
+        description: "Unique competition ID."
+
+      - name: competition_code
+        data_type: string
+        description: "Code of the competition eg. PL -> Premier League."
+
+      - name: home_team_id
+        data_type: int64
+        description: "Unique ID of the home team."
+
+      - name: away_team_id
+        data_type: int64
+        description: "Unique ID of the away team."
+
+      - name: half_time_home_goals
+        data_type: int64
+        description: "Number of goals scored at half time by home team."
+
+      - name: half_time_away_goals
+        data_type: int64
+        description: "Number of goals scored at half time by away team."
+
+      - name: second_half_home_goals
+        data_type: int64
+        description: "Number of goals scored in second half by home team."
+
+      - name: second_half_away_goals
+        data_type: int64
+        description: "Number of goals scored in second half by away team."
+
+      - name: score_full_time
+        data_type: string
+        description: "Full-time score in X:Y format eg. 0:0."
+
+      - name: home_goals
+        data_type: int64
+        description: "Number of goals scored in a match by home team."
+
+      - name: away_goals
+        data_type: int64
+        description: "Number of goals scored in a match by away team."
+
+      - name: total_goals
+        data_type: int64
+        description: "Total number of goals scored in a match."
+
+      - name: is_home_win
+        data_type: int64
+        description: "0/1 flag indicating if home team has won a match."
+
+      - name: is_away_win
+        data_type: int64
+        description: "0/1 flag indicating if away team has won a match."
+
+      - name: is_draw
+        data_type: int64
+        description: "0/1 flag indicating if match ended in draw."
+
+      - name: home_points
+        data_type: int64
+        description: "Number of points earned in a match by home team (Win -> 3 points, Draw -> 1 point, Lose -> 0 points)."
+
+      - name: away_points
+        data_type: int64
+        description: "Number of points earned in a match by away team (Win -> 3 points, Draw -> 1 point, Lose -> 0 points)."
