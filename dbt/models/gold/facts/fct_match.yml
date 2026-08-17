@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: fct_match
     description: "Fact table containing match information. Grain: 1 row = 1 match."
