@@ -6,7 +6,7 @@ WITH pl_matches_24_25 AS (
     utcDate AS match_date_utc,
     status as match_status,
     matchday,
-    JSON_VALUE(JSON_EXTRACT_ARRAY(referees)[SAFE_OFFSET(0)], '$.name') AS referee, --only extract one referee if more than one present
+    JSON_EXTRACT_SCALAR(referees, '$[0].name') AS referee,
     competition_id,
     competition_name,
     competition_code,
@@ -30,7 +30,7 @@ pl_matches_25_26 AS (
     utcDate AS match_date_utc,
     status as match_status,
     matchday,
-     JSON_VALUE(JSON_EXTRACT_ARRAY(referees)[SAFE_OFFSET(0)], '$.name') AS referee, --only extract one referee if more than one present
+    JSON_EXTRACT_SCALAR(referees, '$[0].name') AS referee,
     competition_id,
     competition_name,
     competition_code,
@@ -54,7 +54,7 @@ pl_matches_26_27 AS (
     utcDate AS match_date_utc,
     status as match_status,
     matchday,
-    JSON_VALUE(JSON_EXTRACT_ARRAY(referees)[SAFE_OFFSET(0)], '$.name') AS referee, --only extract one referee if more than one present
+    JSON_EXTRACT_SCALAR(referees, '$[0].name') AS referee,
     competition_id,
     competition_name,
     competition_code,
