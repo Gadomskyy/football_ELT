@@ -2,6 +2,7 @@ WITH base_matches AS (
     SELECT
     *
     FROM {{ ref('pl_matches') }}
+    WHERE match_status = 'FINISHED'
 ),
 
 matches AS (
