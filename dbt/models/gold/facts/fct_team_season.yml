@@ -3,6 +3,10 @@ version: 2
 models:
   - name: fct_team_season
     description: "Fact table containing aggregated information regarding each team's season. Grain: Team x Season."
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "(team_id || '-' || season_id)"
     columns:
       - name: season_id
         data_type: int64

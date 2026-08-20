@@ -3,6 +3,10 @@ version: 2
 models:
   - name: fct_match_team
     description: "Fact table containing information for a match for each team. Grain: 1 row = 1 match for one team (So each match should appear twice)."
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "(match_id || '-' || season_id)"
     columns:
       - name: match_id
         data_type: int64
@@ -36,7 +40,7 @@ models:
               arguments:
                 values: ['HOME', 'AWAY']
 
-      - name: home_team_id
+      - name: team_id
         data_type: int64
         description: "ID of the home team."
 

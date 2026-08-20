@@ -7,6 +7,9 @@ models:
       - name: match_id
         data_type: int64
         description: "Unique match ID."
+        data_tests:
+          - unique
+          - not_null
 
       - name: season_id
         data_type: int64
