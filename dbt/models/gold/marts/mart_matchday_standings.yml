@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: mart_matchday_standings
+    description: "Information about the standings and additional metrics for teams after each matchday in a season. Grain: one row per team per matchday per season."
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "(season_id || '-' || matchday || '-' || team_id)"
+    columns:
+      - name: season_id
+        data_type: int64
+        description: "Unique identifier for the season"
+
+      - name: season
+        data_type: string
+        description: "Name for the season e.g. 2024/2025"
+
+      - name: team_id
+        data_type: int64
+        description: "Unique identifier for the team"
+
+      - name: team_name
+        data_type: string
+        description: "Name of the team"
+
+      - name: matchday
+        data_type: int64
+        description: "Matchday number"
+
+      - name: matches_played
+        data_type: int64
+        description: "Total number of matches played by the team up to the current matchday"
+
+      - name: wins_to_date
+        data_type: int64
+        description: "Total number of wins by the team up to the current matchday"
+
+      - name: draws_to_date
+        data_type: int64
+        description: "Total number of draws by the team up to the current matchday"
+
+      - name: losses_to_date
+        data_type: int64
+        description: "Total number of losses by the team up to the current matchday"
+
+      - name: goals_for_to_date
+        data_type: int64
+        description: "Total number of goals scored by the team up to the current matchday"
+
+      - name: goals_against_to_date
+        data_type: int64
+        description: "Total number of goals scored against the team up to the current matchday"
+
+      - name: goal_difference_to_date
+        data_type: int64
+        description: "Total goal difference (goals for minus goals against) for the team up to the current matchday"
+
+      - name: points_to_date
+        data_type: int64
+        description: "Total points earned by the team up to the current matchday"
+
+      - name: position_after_matchday
+        data_type: int64
+        description: "Position of the team in the league table after the current matchday"
