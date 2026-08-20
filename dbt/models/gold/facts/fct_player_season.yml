@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: fct_player_season
+    description: "Fact table containing player information for each season. Grain: Player x Season."
+    columns:
+      - name: player_id
+        data_type: int64
+        description: "Player ID."
+
+      - name: season
+        data_type: string
+        description: "Season in XXXX/YYYY format e.g. 2024/2025"
+
+      - name: team_id
+        data_type: int64
+        description: "Team ID."
+
+      - name: played_matches
+        data_type: int64
+        description: "Number of played matches."
+
+      - name: goals
+        data_type: int64
+        description: "Number of scored goals."
+
+      - name: assists
+        data_type: int64
+        description: "Number of provided assists."
+
+      - name: penalties
+        data_type: int64
+        description: "Number of scored penalties"
+
+      - name: non_penalties_goals
+        data_type: int64
+        description: "Number of non-penalties goals scored."
+
+      - name: canadian_points
+        data_type: int64
+        description: "Number of goal contributions (goals + assists)."
