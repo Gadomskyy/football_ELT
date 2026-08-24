@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: season_summary
+    description: "Summary of season statistics, including total matches, wins, draws, goals, and top performers. Grain: Season."
+    columns:
+      - name: season_id
+        data_type: int64
+        description: "Unique identifier for the season"
+
+      - name: season
+        data_type: string
+        description: "Name or identifier for the season"
+
+      - name: total_matches
+        data_type: int64
+        description: "Total number of matches in the season"
+
+      - name: total_home_wins
+        data_type: int64
+        description: "Total number of home wins in the season"
+
+      - name: total_away_wins
+        data_type: int64
+        description: "Total number of away wins in the season"
+
+      - name: total_draws
+        data_type: int64
+        description: "Total number of draws in the season"
+
+      - name: total_goals
+        data_type: int64
+        description: "Total number of goals scored in the season"
+
+      - name: total_home_goals
+        data_type: int64
+        description: "Total number of goals scored at home in the season"
+
+      - name: total_away_goals
+        data_type: int64
+        description: "Total number of goals scored away in the season"
+
+      - name: winning_team_id
+        data_type: int64
+        description: "ID of the team that won the season"
+
+      - name: winning_team_name
+        data_type: string
+        description: "Name of the team that won the season"
+
+      - name: top_scorer_player_id
+        data_type: int64
+        description: "ID of the top scorer in the season"
+
+      - name: top_scorer_player_name
+        data_type: string
+        description: "Name of the top scorer in the season"
+
+      - name: top_scorer_goals
+        data_type: int64
+        description: "Number of goals scored by the top scorer in the season"
