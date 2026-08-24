@@ -5,25 +5,32 @@ models:
     description: "Dimension model containing basic player information. Grain: 1 row = 1 player."
     columns:
       - name: player_id
+        data_type: int64
         description: "Unique identifier for the player."
         data_tests:
           - unique
           - not_null
       - name: player_name
+        data_type: string
         description: "Full name of the player."
         data_tests:
           - not_null
       - name: latest_position
+        data_type: string
         description: "Most recent playing position recorded for the player."
       - name: player_dob
+        data_type: date
         description: "Date of birth of the player."
       - name: player_nationality
+        data_type: string
         description: "Nationality of the player."
       - name: first_season
+        data_type: string
         description: "First season recorded for the player (e.g., '2024/2025')."
         data_tests:
           - not_null
       - name: last_season
+        data_type: string
         description: "Most recent season recorded for the player (e.g., '2024/2025')."
         data_tests:
           - not_null

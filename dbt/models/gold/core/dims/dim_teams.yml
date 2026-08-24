@@ -5,25 +5,32 @@ models:
     description: "Dimension table containing basic info for PL teams. Grain: 1 row = 1 team."
     columns:
       - name: team_id
+        data_type: int64
         description: "Unique team ID."
         data_tests:
           - unique
           - not_null
       - name: team_name
+        data_type: string
         description: "Team's full name."
         data_tests:
           - not_null
       - name: tla
+        data_type: string
         description: "Three letter acronym of the club"
       - name: founded_year
+        data_type: int64
         description: "Club's founding year."
       - name: stadium
+        data_type: string
         description: "Full stadium name."
       - name: country
+        data_type: string
         description: "Country of origin."
         data_tests:
           - not_null
       - name: last_season
+        data_type: string
         description: "Last season where team was present in PL"
         data_tests:
           - not_null
