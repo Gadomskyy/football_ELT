@@ -4,9 +4,18 @@ models:
   - name: fct_team_season
     description: "Fact table containing aggregated information regarding each team's season. Grain: Team x Season."
     data_tests:
-      - unique:
+      - dbt_utils.unique_combination_of_columns:
           arguments:
-            column_name: "(team_id || '-' || season_id)"
+            combination_of_columns:
+              - season_id
+              - team_id
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "matches_played = wins + draws + losses"
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "points = home_points + away_points"
+
     columns:
       - name: season_id
         data_type: int64
@@ -75,3 +84,8 @@ models:
       - name: table_position
         data_type: int64
         description: "Final position in a season."
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 1
+                max_value: 20
