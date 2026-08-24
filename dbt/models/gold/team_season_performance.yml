@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: team_season_performance 
+    description: "Aggregated seasonal performance metrics for each team, including record, points, goals, and champion status. Grain: Team X Season."
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "(team_id || '-' || season_id)"
+    columns:
+      - name: season_id
+        data_type: int64
+        description: "Unique identifier for the season."
+        data_tests:
+          - not_null
+
+      - name: season
+        data_type: varchar
+        description: "Name or representation of the season (e.g., '2023/2024')."
+        data_tests:
+          - not_null
+
+      - name: team_id
+        data_type: int64
+        description: "Unique identifier for the team."
+        data_tests:
+          - not_null
+
+      - name: team_name
+        data_type: varchar
+        description: "Name of the team."
+        data_tests:
+          - not_null
+
+      - name: wins
+        data_type: int64
+        description: "Total number of matches won in the season."
+
+      - name: draws
+        data_type: int64
+        description: "Total number of matches drawn in the season."
+
+      - name: losses
+        data_type: int64
+        description: "Total number of matches lost in the season."
+
+      - name: points
+        data_type: int64
+        description: "Total points earned during the season."
+
+      - name: points_per_game
+        data_type: numeric
+        description: "Average points earned per match."
+
+      - name: home_points
+        data_type: int64
+        description: "Points earned from home matches."
+
+      - name: away_points
+        data_type: int64
+        description: "Points earned from away matches."
+
+      - name: goals_scored
+        data_type: int64
+        description: "Total goals scored by the team."
+
+      - name: goals_conceded
+        data_type: int64
+        description: "Total goals conceded by the team."
+
+      - name: goal_difference
+        data_type: int64
+        description: "Goal difference (Goals For minus Goals Against)."
+
+      - name: clean_sheets
+        data_type: int64
+        description: "Total matches where the team conceded zero goals."
+
+      - name: table_position
+        data_type: int64
+        description: "Final standing/position of the team in the league table."
+
+      - name: is_winner
+        data_type: int64
+        description: "Flag indicating whether the team won the championship in that season (1 = Yes, 0 = No)."

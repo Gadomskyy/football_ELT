@@ -7,7 +7,7 @@ from src.common.commons import GCP_PROJECT_ID, GCP_LOCATION
 
 #VARIABLES
 SEASONS = [2024, 2025, 2026]
-LIMIT = 100
+LIMIT = 999 #limit to ensure we get all scorers
 
 API_URL = (
     "https://api.football-data.org/v4/competitions/PL/scorers"

@@ -26,5 +26,5 @@ models:
         description: "Number of assists scored in a season."
       - name: penalties
         description: "Number of penalties scored in a season."
-      - name: canadian points
+      - name: canadian_points
         description: "Number of canadian points (goals + assists) scored in a season."
