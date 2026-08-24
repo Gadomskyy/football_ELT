@@ -38,3 +38,5 @@ models:
     gold:
       +schema: gold
       +materialized: table
+      +contract:
+        enforced: true 
