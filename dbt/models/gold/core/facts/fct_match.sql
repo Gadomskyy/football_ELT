@@ -1,51 +1,57 @@
-WITH base_matches AS (
-    SELECT
-    *
-    FROM {{ ref('pl_matches') }}
-    WHERE match_status = 'FINISHED'
+with base_matches as (
+    select *
+    from {{ ref('pl_matches') }}
+    where match_status = 'FINISHED'
 ),
 
-matches AS (
-SELECT
-match_id,
-season_id,
-match_date,
-match_status,
-matchday,
-referee,
-competition_id,
-competition_code,
-home_team_id,
-away_team_id,
-score_half_time_home AS half_time_home_goals,
-score_half_time_away AS half_time_away_goals,
-(score_full_time_home - score_half_time_home) AS second_half_home_goals,
-(score_full_time_away - score_half_time_away) AS second_half_away_goals,
-score_full_time,
-score_full_time_home AS home_goals,
-score_full_time_away AS away_goals,
-(score_full_time_home + score_full_time_away) AS total_goals,
-CASE
-    WHEN score_full_time_home > score_full_time_away
-    THEN 1 ELSE 0 END AS is_home_win,
-CASE
-    WHEN score_full_time_home < score_full_time_away
-    THEN 1 ELSE 0 END AS is_away_win,
-CASE
-    WHEN score_full_time_home = score_full_time_away
-    THEN 1 ELSE 0 END AS is_draw
-FROM base_matches
+matches as (
+    select
+        match_id,
+        season_id,
+        match_date,
+        match_status,
+        matchday,
+        referee,
+        competition_id,
+        competition_code,
+        home_team_id,
+        away_team_id,
+        score_half_time_home as half_time_home_goals,
+        score_half_time_away as half_time_away_goals,
+        (score_full_time_home - score_half_time_home) as second_half_home_goals,
+        (score_full_time_away - score_half_time_away) as second_half_away_goals,
+        score_full_time,
+        score_full_time_home as home_goals,
+        score_full_time_away as away_goals,
+        (score_full_time_home + score_full_time_away) as total_goals,
+        case
+            when score_full_time_home > score_full_time_away
+                then 1
+            else 0
+        end as is_home_win,
+        case
+            when score_full_time_home < score_full_time_away
+                then 1
+            else 0
+        end as is_away_win,
+        case
+            when score_full_time_home = score_full_time_away
+                then 1
+            else 0
+        end as is_draw
+    from base_matches
 )
 
-SELECT
-*,
-CASE
-    WHEN is_home_win = 1 THEN 3
-    WHEN is_draw = 1 THEN 1
-    ELSE 0 END AS home_points,
-CASE
-    WHEN is_away_win = 1 THEN 3
-    WHEN is_draw = 1 THEN 1
-    ELSE 0 END AS away_points
-FROM matches  
-
+select
+    *,
+    case
+        when is_home_win = 1 then 3
+        when is_draw = 1 then 1
+        else 0
+    end as home_points,
+    case
+        when is_away_win = 1 then 3
+        when is_draw = 1 then 1
+        else 0
+    end as away_points
+from matches

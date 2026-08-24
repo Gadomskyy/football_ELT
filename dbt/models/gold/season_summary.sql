@@ -1,58 +1,52 @@
 with base_seasons as (
-    select 
-        *
+    select *
     from {{ ref('dim_seasons') }}
 ),
 
 base_team_season as (
-    select 
-        *
+    select *
     from {{ ref('fct_team_season') }}
 ),
 
 base_match as (
-    select 
-        *
+    select *
     from {{ ref('fct_match') }}
 ),
 
 base_teams as (
-    select 
-        *
+    select *
     from {{ ref('dim_teams') }}
 ),
 
 
 base_players as (
-    select 
-        *
+    select *
     from {{ ref('dim_players') }}
 ),
 
 base_top_scorer as (
-    select 
-        *
+    select *
     from {{ ref('fct_player_season') }}
 ),
 
 season_summary as (
-    SELECT
+    select
         base_seasons.season_id,
         base_seasons.season,
-        COUNT(*) as total_matches,
-        SUM(base_match.is_home_win) as total_home_wins,
-        SUM(base_match.is_away_win) as total_away_wins,
-        SUM(base_match.is_draw) as total_draws,
-        SUM(base_match.home_goals + base_match.away_goals) as total_goals,
-        SUM(base_match.home_goals) as total_home_goals,
-        SUM(base_match.away_goals) as total_away_goals, 
+        count(*) as total_matches,
+        sum(base_match.is_home_win) as total_home_wins,
+        sum(base_match.is_away_win) as total_away_wins,
+        sum(base_match.is_draw) as total_draws,
+        sum(base_match.home_goals + base_match.away_goals) as total_goals,
+        sum(base_match.home_goals) as total_home_goals,
+        sum(base_match.away_goals) as total_away_goals
     from base_seasons
-        join base_match on base_seasons.season_id = base_match.season_id
-    group by 1,2
+    join base_match on base_seasons.season_id = base_match.season_id
+    group by 1, 2
 ),
 
-season_winners AS (
-    select 
+season_winners as (
+    select
         base_team_season.season_id,
         base_team_season.team_id,
         base_teams.team_name,
@@ -62,18 +56,26 @@ season_winners AS (
     where table_position = 1
 ),
 
-top_scorers AS (
+top_scorers as (
     select
         base_top_scorer.player_id,
         base_top_scorer.season,
         base_players.player_name,
         base_top_scorer.goals,
-        ROW_NUMBER() OVER (PARTITION BY base_top_scorer.season ORDER BY base_top_scorer.goals DESC, base_top_scorer.assists DESC, base_top_scorer.played_matches DESC) as top_scorer_rank
+        row_number()
+            over (
+                partition by base_top_scorer.season
+                order by
+                    base_top_scorer.goals desc,
+                    base_top_scorer.assists desc,
+                    base_top_scorer.played_matches desc
+            )
+            as top_scorer_rank
     from base_top_scorer
     left join base_players on base_top_scorer.player_id = base_players.player_id
 )
 
-SELECT
+select
     season_summary.season_id,
     season_summary.season,
     season_summary.total_matches,

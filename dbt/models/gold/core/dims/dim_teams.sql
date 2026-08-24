@@ -1,16 +1,15 @@
-WITH base_teams AS (
-    SELECT
-    *
-    FROM {{ ref('pl_teams') }}
+with base_teams as (
+    select *
+    from {{ ref('pl_teams') }}
 )
 
-SELECT 
-team_id,
-team_name,
-tla,
-founded_year,
-stadium,
-country,
-MAX(season) AS last_season
-FROM base_teams
-GROUP BY 1,2,3,4,5,6
+select
+    team_id,
+    team_name,
+    tla,
+    founded_year,
+    stadium,
+    country,
+    max(season) as last_season
+from base_teams
+group by 1, 2, 3, 4, 5, 6

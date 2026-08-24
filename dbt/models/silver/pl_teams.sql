@@ -1,51 +1,51 @@
-WITH teams_24_25 AS (
+with teams_24_25 as (
 
-    SELECT
-        '2024/2025' AS season,
-        id AS team_id,
-        name AS team_name,
+    select
+        '2024/2025' as season,
+        id as team_id,
+        name as team_name,
         tla,
-        founded AS founded_year,
-        venue AS stadium,
-        area_code AS country
-    FROM {{ source('pl_data', 'football_data_pl_teams_2024_25') }}
+        founded as founded_year,
+        venue as stadium,
+        area_code as country
+    from {{ source('pl_data', 'football_data_pl_teams_2024_25') }}
 
 ),
 
-teams_25_26 AS (
+teams_25_26 as (
 
-    SELECT
-        '2025/2026' AS season,
-        id AS team_id,
-        name AS team_name,
+    select
+        '2025/2026' as season,
+        id as team_id,
+        name as team_name,
         tla,
-        founded AS founded_year,
-        venue AS stadium,
-        area_code AS country
-    FROM {{ source('pl_data', 'football_data_pl_teams_2025_26') }}
+        founded as founded_year,
+        venue as stadium,
+        area_code as country
+    from {{ source('pl_data', 'football_data_pl_teams_2025_26') }}
 
 ),
 
-teams_26_27 AS (
+teams_26_27 as (
 
-    SELECT
-        '2026/2027' AS season,
-        id AS team_id,
-        name AS team_name,
+    select
+        '2026/2027' as season,
+        id as team_id,
+        name as team_name,
         tla,
-        founded AS founded_year,
-        venue AS stadium,
-        area_code AS country
-    FROM {{ source('pl_data', 'football_data_pl_teams_2026_27') }}
+        founded as founded_year,
+        venue as stadium,
+        area_code as country
+    from {{ source('pl_data', 'football_data_pl_teams_2026_27') }}
 
 )
 
-SELECT * FROM teams_24_25
+select * from teams_24_25
 
-UNION ALL
+union all
 
-SELECT * FROM teams_25_26
+select * from teams_25_26
 
-UNION ALL
+union all
 
-SELECT * FROM teams_26_27
+select * from teams_26_27

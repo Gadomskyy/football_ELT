@@ -27,4 +27,3 @@ select
     extract(dayofweek from date) in (1, 7) as is_weekend
 
 from date_spine
-

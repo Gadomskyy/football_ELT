@@ -1,66 +1,65 @@
-WITH base_matches AS (
-    SELECT
-    *
-    FROM {{ ref('pl_matches') }}
-    WHERE match_status = 'FINISHED'
+with base_matches as (
+    select *
+    from {{ ref('pl_matches') }}
+    where match_status = 'FINISHED'
 ),
 
-home_team_match AS (
-SELECT
-    match_id,
-    season_id,
-    match_date,
-    matchday,
-    competition_id,
-    competition_code, 
-    'HOME' AS home_away,
-    home_team_id AS team_id,
-    score_full_time,
-    score_full_time_home AS goals_for,
-    score_full_time_away AS goals_against,
-    (score_full_time_home - score_full_time_away) AS goal_difference,
-    CASE
-        WHEN score_full_time_home > score_full_time_away THEN 'WIN'
-        WHEN score_full_time_home = score_full_time_away THEN 'DRAW'
-        ELSE 'LOSS'
-        END AS result,
-    CASE
-        WHEN score_full_time_home > score_full_time_away THEN 3
-        WHEN score_full_time_home = score_full_time_away THEN 1
-        ELSE 0
-    END AS points
-FROM base_matches
+home_team_match as (
+    select
+        match_id,
+        season_id,
+        match_date,
+        matchday,
+        competition_id,
+        competition_code,
+        'HOME' as home_away,
+        home_team_id as team_id,
+        score_full_time,
+        score_full_time_home as goals_for,
+        score_full_time_away as goals_against,
+        (score_full_time_home - score_full_time_away) as goal_difference,
+        case
+            when score_full_time_home > score_full_time_away then 'WIN'
+            when score_full_time_home = score_full_time_away then 'DRAW'
+            else 'LOSS'
+        end as result,
+        case
+            when score_full_time_home > score_full_time_away then 3
+            when score_full_time_home = score_full_time_away then 1
+            else 0
+        end as points
+    from base_matches
 ),
-    
-away_team_match AS (
-SELECT
-    match_id,
-    season_id,
-    match_date,
-    matchday,
-    competition_id,
-    competition_code, 
-    'AWAY' AS home_away,
-    away_team_id AS team_id,
-    score_full_time,
-    score_full_time_away AS goals_for,
-    score_full_time_home AS goals_against,
-    (score_full_time_away - score_full_time_home) AS goal_difference,
-    CASE
-        WHEN score_full_time_away > score_full_time_home THEN 'WIN'
-        WHEN score_full_time_home = score_full_time_away THEN 'DRAW'
-        ELSE 'LOSS'
-        END AS result,
-    CASE
-        WHEN score_full_time_away > score_full_time_home THEN 3
-        WHEN score_full_time_home = score_full_time_away THEN 1
-        ELSE 0
-    END AS points
-FROM base_matches
+
+away_team_match as (
+    select
+        match_id,
+        season_id,
+        match_date,
+        matchday,
+        competition_id,
+        competition_code,
+        'AWAY' as home_away,
+        away_team_id as team_id,
+        score_full_time,
+        score_full_time_away as goals_for,
+        score_full_time_home as goals_against,
+        (score_full_time_away - score_full_time_home) as goal_difference,
+        case
+            when score_full_time_away > score_full_time_home then 'WIN'
+            when score_full_time_home = score_full_time_away then 'DRAW'
+            else 'LOSS'
+        end as result,
+        case
+            when score_full_time_away > score_full_time_home then 3
+            when score_full_time_home = score_full_time_away then 1
+            else 0
+        end as points
+    from base_matches
 )
 
-SELECT * FROM home_team_match
+select * from home_team_match
 
-UNION ALL
+union all
 
-SELECT * FROM away_team_match
+select * from away_team_match

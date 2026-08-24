@@ -1,0 +1,31 @@
+[sqlfluff]
+dialect = bigquery
+templater = dbt
+encoding = utf-8
+max_line_length = 100
+
+rules = layout, capitalisation, convention.select_trailing_comma
+
+[sqlfluff:templater:dbt]
+project_dir = .
+
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
+indented_joins = False
+indented_ctes = False
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:convention.select_trailing_comma]
+select_clause_trailing_comma = forbid
