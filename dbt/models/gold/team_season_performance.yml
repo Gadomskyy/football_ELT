@@ -15,7 +15,7 @@ models:
           - not_null
 
       - name: season
-        data_type: varchar
+        data_type: string
         description: "Name or representation of the season (e.g., '2023/2024')."
         data_tests:
           - not_null
@@ -27,7 +27,7 @@ models:
           - not_null
 
       - name: team_name
-        data_type: varchar
+        data_type: string
         description: "Name of the team."
         data_tests:
           - not_null
@@ -49,7 +49,7 @@ models:
         description: "Total points earned during the season."
 
       - name: points_per_game
-        data_type: numeric
+        data_type: float64
         description: "Average points earned per match."
 
       - name: home_points
