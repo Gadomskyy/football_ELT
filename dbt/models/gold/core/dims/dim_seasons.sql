@@ -1,19 +1,19 @@
-WITH seasons AS (
+with seasons as (
 
-    SELECT
+    select
         season_id,
         season,
         season_start_date,
         season_end_date
-    FROM {{ ref('pl_winners') }}
+    from {{ ref('pl_winners') }}
 
 )
 
-SELECT
+select
     season_id,
     season,
     season_start_date,
     season_end_date,
-    EXTRACT(YEAR FROM season_start_date) AS start_year,
-    EXTRACT(YEAR FROM season_end_date) AS end_year
-FROM seasons
+    extract(year from season_start_date) as start_year,
+    extract(year from season_end_date) as end_year
+from seasons
