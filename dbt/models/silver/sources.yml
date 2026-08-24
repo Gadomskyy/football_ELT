@@ -17,7 +17,7 @@ anchors:
         data_tests:
           - accepted_values:
               arguments:
-                values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED']
+                values: ['SCHEDULED', 'LIVE', 'IN_PLAY', 'PAUSED', 'FINISHED', 'POSTPONED', 'SUSPENDED', 'CANCELLED', 'TIMED']
       - name: matchday
         description: "Integer - a matchday at which the fixture took place"
         data_tests:
@@ -223,10 +223,6 @@ anchors:
         description: "Nationality of the player."
       - name: player_section
         description: "Main line at which player plays at."
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['Midfield', 'Offence', 'Defence', 'Centre-Forward']
       - name: player_position
         description: "Main position of the player."
       - name: player_shirtNumber

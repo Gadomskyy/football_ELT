@@ -12,13 +12,13 @@ models:
               - season_id
       - dbt_utils.expression_is_true:
           arguments:
-            expression: "matches_played = wins + draws + losses"
+            expression: "matches_played = wins_to_date + draws_to_date + losses_to_date"
       - dbt_utils.expression_is_true:
           arguments:
-            expression: "points = wins * 3 + draws"
+            expression: "points_to_date = wins_to_date * 3 + draws_to_date"
       - dbt_utils.expression_is_true:
           arguments:
-            expression: "goal_difference = goals_for - goals_against"
+            expression: "goal_difference_to_date = goals_for_to_date - goals_against_to_date"
 
     columns:
       - name: season_id
