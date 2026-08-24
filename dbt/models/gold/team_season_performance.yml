@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: mart_team_season_performance 
+  - name: team_season_performance 
     description: "Aggregated seasonal performance metrics for each team, including record, points, goals, and champion status. Grain: Team X Season."
     data_tests:
       - unique:

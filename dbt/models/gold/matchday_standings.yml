@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: mart_matchday_standings
+  - name: matchday_standings
     description: "Information about the standings and additional metrics for teams after each matchday in a season. Grain: one row per team per matchday per season."
     data_tests:
       - unique:
