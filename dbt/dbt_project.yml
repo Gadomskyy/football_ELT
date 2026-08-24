@@ -37,13 +37,5 @@ models:
       +materialized: view
 
     gold:
-      dims:
-        +schema: gold
-        +materialized: table
-      facts: 
-        +schema: gold
-        +materialized: table
-      marts:
-        +schema: gold
-        +materialized: table
-
+      +schema: gold
+      +materialized: table
