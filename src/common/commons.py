@@ -11,3 +11,6 @@ GCP_LOCATION = os.getenv(
     "GCP_LOCATION",
     "europe-central2",
 )
+
+DBT_PROJECT_DIR = "/opt/airflow/dbt"
+DBT_PROFILES_DIR = "/opt/airflow/dbt_profiles"
